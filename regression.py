@@ -7,7 +7,11 @@ from sklearn.utils import shuffle
 # Load machine ready data
 data = pd.read_csv('machine_library.csv')
 
-iterations = 100
+# Total iterations of fitting
+iterations = 250
+
+# Total increments of j
+increments = 25
 
 # Define our custom error rate function, returns a result [0-1]. 1: perfect fit, 0: opposite fit
 def error_rate(h, y):
@@ -40,23 +44,32 @@ def fit(j):
 
     return (h,y,error_rate(h,y))
 
+
+# Range of increments to use. Must cut of low end and high end to ensure valid training/testing portions
+rng = (int(increments*0.2), int(increments*0.9))
+
 # Define our results DataFrame, organized by j value, which dictates split ratio
 # Designed to maximize training data for this small data set
-results = pd.DataFrame(columns=[str(a) for a in range(4,19)], index=[0])
+results = pd.DataFrame(columns=[str(a/increments) for a in range(rng[0], rng[1])], index=[0])
 
 for _ in range(iterations):
     # Randomly shuffle rows
     data = shuffle(data)
 
-    for j in range(4, 19):
+    for j in range(rng[0], rng[1]):
         # Append error rate, of hypothesis and true target data, to j column in results DF
-        results = results.append({str(j): fit(j/20)[2]}, ignore_index=True)
+        results = results.append({str(j/increments): fit(j/increments)[2]}, ignore_index=True)
 
-f = fit(.75)
+# Sample
+f = fit(.78)
 print(f[0])
 print(f[1])
 print(f[2])
 
-results.plot.box()
+# [5 3 2 4 4 4 4 5 2 5 5]
+# [3 3 4 4 3 4 3 5 2 5 5]
+# 0.863636363636
+
+results.plot.box(title='Effect of training data ratio on Error Rate')
 
 plt.show()
