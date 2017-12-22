@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib import figure
 from matplotlib.pyplot import xticks, grid
 from sklearn import linear_model
 from sklearn.model_selection._split import train_test_split
@@ -37,7 +38,7 @@ def fit(j, testing=None, coef=False):
     if testing is None:
         testing = [X_test, Y_test]
 
-    # Instantiate multi-class classification logistic regression model
+    # Instantiate binary classification logistic regression model
     logreg = linear_model.LogisticRegression(C=1e5)
 
     # Fit model
@@ -63,8 +64,9 @@ f = fit(.76, testing=[[x],[1]], coef=True)
 
 # Plot coefficient matrix
 weights = pd.DataFrame(np.array(f[3]).transpose(), columns=['5 star'])
+plt.figure(num=1, figsize=(14,10))
 weights.plot.bar()
 grid(True, alpha=0.4)
-xticks(range(len(headers[1:])), headers[1:], rotation=45)
+xticks(range(len(headers[1:])), headers[1:], rotation=30)
 
 plt.show()
