@@ -1,24 +1,67 @@
-import csv
-import datetime as dt
+from pprint import pprint
+
 import pandas as pd
 import matplotlib.pyplot as plt
 
-data = pd.DataFrame({'title':'', 'date_read': '', 'date_added':'', 'total_pages':0, 'my_rating':0}, index=[0])
+data = pd.read_csv('machine_library.csv')[1:]
 
-with open('library_export.csv', newline='') as csvfile:
-    read = csv.reader(csvfile, delimiter=',')
-    for row in read:
-        #print(row)
+results = {
+    'total count': data.count(),
+    'pages': data.pages.describe(),
+    'duration': data.duration.describe(),
+    'european': data.european.sum(),
+    'north american': data.north_american.sum(),
+    'asian': data.asian.sum(),
+    'fiction': data.fiction.sum(),
+    'non-fiction': data.nonfiction.sum(),
+    'gender': data.author_gender.sum(),
+}
 
-        prior_row = data.total_pages[data.shape[0]-1]
-        r = dt.time.strptime(row[12], "%m/%d/%y")
-        a = dt.time.strptime(row[13], "%m/%d/%y")
-        #duration = int(r) - int(a)
-        #print(duration)
-        data = data.append([{'title':row[1], 'date_read': row[12], 'date_added':row[13], 'total_pages':int(row[9])+int(prior_row), 'my_rating': int(row[7])}], ignore_index=True)
-
-    #print(data)
-    data.plot(x='date_read',y='total_pages',title='Total pages read since Oct. 2015')
-    data.plot.bar(x='date_read',y='my_rating')
-    #print(data.mean())
-    plt.show()
+pprint(results)
+# {'asian': 4,
+#  'duration': count     46.000000
+# mean      17.391304
+# std       25.590344
+# min        0.000000
+# 25%        2.000000
+# 50%        8.000000
+# 75%       21.750000
+# max      122.000000
+# Name: duration, dtype: float64,
+#  'european': 18,
+#  'fiction': 21,
+#  'gender': 5,
+#  'non-fiction': 16,
+#  'north american': 24,
+#  'pages': count     46.000000
+# mean     240.826087
+# std      147.711326
+# min       33.000000
+# 25%      144.250000
+# 50%      213.000000
+# 75%      292.500000
+# max      854.000000
+# Name: pages, dtype: float64,
+#  'total count': five_star               46
+# european                46
+# north_american          46
+# asian                   46
+# other                   46
+# author_gender           46
+# avg_rating              46
+# pages                   46
+# org_publication_year    46
+# duration                46
+# favorite                46
+# fiction                 46
+# nonfiction              46
+# contemporary            46
+# philosophy              46
+# politics                46
+# religion                46
+# science_tech_math       46
+# short_story             46
+# memoir                  46
+# war_story               46
+# historical              46
+# dtype: int64}
