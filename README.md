@@ -20,3 +20,6 @@ Utilize a binary logistic regression model to fit the factors. Target factor is 
 
 ## Results
 
+![Coefficients bar graph](coefficients.png)
+
+The most significant flaw in this design is the lack of data. Insufficient data causes this implementation to act inconsistent when determining the model's coefficients. Must mean I need to read more!
