@@ -8,10 +8,12 @@ data = pd.read_csv('machine_library.csv')[1:]
 results = {
     'total count': data.count(),
     'pages': data.pages.describe(),
+    'page_total': data.pages.sum(),
     'duration': data.duration.describe(),
     'european': data.european.sum(),
     'north american': data.north_american.sum(),
     'asian': data.asian.sum(),
+    'other': data.other.sum(),
     'fiction': data.fiction.sum(),
     'non-fiction': data.nonfiction.sum(),
     'gender': data.author_gender.sum(),
@@ -33,6 +35,8 @@ pprint(results)
 #  'gender': 5,
 #  'non-fiction': 16,
 #  'north american': 24,
+#  'other': 3,
+#  'page_total': 11078,
 #  'pages': count     46.000000
 # mean     240.826087
 # std      147.711326
