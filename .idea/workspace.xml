@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0ff8fb5d-1281-47d1-9827-41fdef8e9cf4" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/bookanalysis.ipynb" afterPath="$PROJECT_DIR$/bookanalysis.ipynb" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,7 +20,7 @@
         <entry file="file://$PROJECT_DIR$/bookanalysis.ipynb">
           <provider selected="true" editor-type-id="ipnb-editor">
             <state>
-              <selected id="14" />
+              <selected id="13" />
             </state>
           </provider>
         </entry>
@@ -485,7 +484,7 @@
     <entry file="file://$PROJECT_DIR$/bookanalysis.ipynb">
       <provider selected="true" editor-type-id="ipnb-editor">
         <state>
-          <selected id="14" />
+          <selected id="13" />
         </state>
       </provider>
     </entry>
